@@ -1,0 +1,713 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+        <meta name="format-detection" content="tephone=no,email=no,date=no,address=no">
+        <style type="text/css">
+            html{ background-color: white; }
+            header{  padding: 25px 0; }
+            span {
+                padding: 5px 15px;
+                margin: 10px;
+                display: inline-block;
+                background-color: #e8e8e8;
+            }
+            .hover{ opacity: .4; }
+        </style>
+    </head>
+    <body>
+        <header>
+            <h1>dialogBox</h1>
+            <mark>
+                使用前请详细阅读 文档 使用规则
+            </mark>
+        </header>
+        <span tapmode="hover" onclick="dialogBox_alert1()"> dialogBox_alert1 </span>
+        <span tapmode="hover" onclick="dialogBox_alert2()"> dialogBox_alert2 </span>
+        <span tapmode="hover" onclick="dialogBox_sendMessage()"> dialogBox_sendMessage </span>
+        <span tapmode="hover" onclick="dialogBox_scene()"> dialogBox_scene </span>
+        <span tapmode="hover" onclick="dialogBox_evaluation()"> dialogBox_evaluation </span>
+        <span tapmode="hover" onclick="dialogBox_raffle()"> dialogBox_raffle </span>
+        <span tapmode="hover" onclick="dialogBox_taskPlan()"> dialogBox_taskPlan </span>
+        <span tapmode="hover" onclick="dialogBox_receipt()"> dialogBox_receipt </span>
+        <span tapmode="hover" onclick="dialogBox_tips()"> dialogBox_tips </span>
+        <span tapmode="hover" onclick="dialogBox_discount()"> dialogBox_discount </span>
+        <span tapmode="hover" onclick="dialogBox_share()"> dialogBox_share </span>
+        <span tapmode="hover" onclick="dialogBox_actionMenu()"> dialogBox_actionMenu </span>
+</body>
+</html>
+
+<script type="text/javascript">
+    var dialogBox;
+    apiready = function(){
+        dialogBox = api.require('dialogBox');
+    }
+
+function dialogBox_alert1() {
+    dialogBox.alert({
+        texts : {
+            title : ' 确认',
+            content : '您是游客状态，是否登录？',
+            leftBtnTitle : '取消',
+            rightBtnTitle : '登录'
+        },
+        styles : {
+            bg : '#fff',
+            corner : 6,
+            w : 260,
+            title : {
+                marginT : 20,
+                icon : 'widget://image/gou.png',
+                iconSize : 32,
+                titleSize : 18,
+                titleColor : '#000'
+            },
+            content : {
+                color : '#000',
+                size : 16
+            },
+            left : {
+                marginB : 15,
+                marginL : 40,
+                w : 40,
+                h : 35,
+                corner : 2,
+                color : "#000",
+                bg : '#fff',
+                size : 16
+            },
+            right : {
+                marginB : 15,
+                marginL : 88,
+                w : 40,
+                h : 35,
+                corner : 2,
+                color : "#000",
+                bg : '#fff',
+                size : 16
+            }
+        },
+        tapClose : true
+    }, function(ret) {
+        if (ret.eventType == 'left') {
+            dialogBox.close({
+                dialogName: 'alert'
+            });
+        }
+    });
+}
+
+function dialogBox_alert2() {
+    dialogBox.alert({
+        texts: {
+            content: '您关闭了小助手的消息提醒，店主妹妹因联系不到您哭晕在厕所！',
+            leftBtnTitle: '默默拒绝',
+            rightBtnTitle: '去开提醒'
+        },
+        styles: {
+            bg: '#fff',
+            corner: 6,
+            w: 280,
+            content: {
+                color: '#000',
+                size: 18
+            },
+            left: {
+                marginB: 15,
+                marginL: 30,
+                w: 100,
+                h: 40,
+                corner: 20,
+                color: "#fff",
+                bg: '#CDCDCD',
+                size: 16
+            },
+            right: {
+                marginB: 15,
+                marginL: 20,
+                w: 100,
+                h: 40,
+                corner: 20,
+                color: "#fff",
+                bg: '#C087C0',
+                size: 16
+            }
+        },
+        tapClose: true
+    }, function(ret) {
+        if (ret.eventType == 'left') {
+            dialogBox.close({
+                dialogName: 'alert'
+            });
+        }
+    });
+}
+
+function dialogBox_sendMessage() {
+    dialogBox.sendMessage({
+        texts: {
+            title: '  您的昵称：',
+            hintText: '小明（点击此处修改昵称）',
+            content: '亲，送你一个80元大礼包，请查收！退订请回复TD',
+            leftBtnTitle: '取消',
+            rightBtnTitle: '发送'
+        },
+        styles: {
+            bg: '#fff',
+            corner: 6,
+            w: 260,
+            title: {
+                h: 40,
+                show: {
+                    marginL: 6,
+                    titleSize: 14,
+                    titleColor: '#000'
+                },
+                input: {
+                    marginL: 6,
+                    textSize: 14,
+                    textColor: '#000'
+                }
+            },
+            content: {
+                color: '#000',
+                size: 14
+            },
+            left: {
+                marginB: 7,
+                marginL: 40,
+                w: 60,
+                h: 35,
+                corner: 2,
+                bg: '#fff',
+                color: "#000",
+                size: 16
+            },
+            right: {
+                marginB: 7,
+                marginL: 55,
+                w: 60,
+                h: 35,
+                corner: 2,
+                bg: '#fff',
+                color: "#000",
+                size: 16
+            }
+        },
+        tapClose: true
+    }, function(ret) {
+        if (ret.eventType == 'left') {
+            dialogBox.close({
+                dialogName: 'sendMessage'
+            });
+        }
+    });
+}
+
+function dialogBox_scene() {
+    dialogBox.scene({
+        rect: {
+            w: 260,
+            h: 410
+        },
+        texts: {
+            title: '猖狂的小偷',
+            content: '火车售票处前的队伍蜿蜒纵横，旁边一小伙一边张望，一边将手伸向前面买票人的口袋，啊，是小偷!'
+        },
+        styles: {
+            bg: '#fff',
+            corner: 6,
+            title: {
+                bg: '#333',
+                h: 44,
+                size: 16,
+                color: '#7E92DE'
+            },
+            sceneImg: {
+                h: 133,
+                path: 'widget://image/row.jpg'
+            },
+            content: {
+                color: '#7E92DE',
+                size: 14
+            },
+            cell: {
+                bg: '#fff',
+                h: 40,
+                text: {
+                    color: '#7E92DE',
+                    size: 16
+                }
+            }
+        },
+        optionDatas: [{
+            text: '1、拿出手机偷拍'
+        }, {
+            text: '2、见义勇为抓小偷'
+        }, {
+            text: '3、大声提醒买票的人'
+        }],
+        tapClose: true
+    }, function(ret, err) {
+        if (ret) {
+            alert(JSON.stringify(ret));
+        } else {
+            alert(JSON.stringify(err));
+        }
+    });
+}
+
+function dialogBox_evaluation() {
+    dialogBox.evaluation({
+        styles: {
+            bg: '#fff',
+            corner: 6,
+            w: 260,
+            title: {
+                marginT: 20,
+                size: 16,
+                color: '#000',
+                bold: true
+            },
+            content: {
+                marginT: 20,
+                color: '#111',
+                size: 14
+            },
+            buttons: [{
+                marginB: 0,
+                marginL: 0,
+                w: 260,
+                h: 35,
+                bg: '#fff',
+                color: '#007FFF',
+                size: 16
+            }, {
+                marginB: 10,
+                marginL: 0,
+                w: 260,
+                h: 35,
+                bg: '#fff',
+                color: '#007FFF',
+                size: 16
+            }]
+        },
+        texts: {
+            title: '达令的老板娘撒娇喽',
+            content: '客官，您留步，给我个好评好吗？嗯嗯！不然鹿董回来一生气，他，他打我~5555',
+            buttons: [{
+                text: '看到家暴，残忍的飘过~'
+            }, {
+                text: '这么可怜，就给个五星好评吧'
+            }]
+        },
+        tapClose: true
+    }, function(ret, err) {
+        if (ret) {
+            alert(JSON.stringify(ret));
+        } else {
+            alert(JSON.stringify(err));
+        }
+    });
+}
+
+function dialogBox_raffle() {
+    dialogBox.raffle({
+        texts: {
+            title: '恭喜你',
+            mainText: '抽中一个奖杯',
+            subText: '这就中了，还有什么你做不到',
+            leftTitle: '收入囊中',
+            rightTitle: '告诉好友'
+        },
+        styles: {
+            bg: '#fff',
+            corner: 6,
+            w: 260,
+            title: {
+                size: 18,
+                color: '#000'
+            },
+            icon: {
+                marginT: 20,
+                w: 80,
+                h: 80,
+                iconPath: 'widget://image/bei.jpg'
+            },
+            main: {
+                marginT: 20,
+                color: '#636363',
+                size: 16
+            },
+            sub: {
+                marginT: 8,
+                color: '#999999',
+                size: 14
+            },
+            left: {
+                marginB: 10,
+                marginL: 8,
+                w: 90,
+                h: 35,
+                corner: 2,
+                bg: '#fff',
+                color: '#007FFF',
+                size: 14
+            },
+            right: {
+                marginB: 10,
+                marginL: 62,
+                w: 90,
+                h: 35,
+                corner: 2,
+                bg: '#fff',
+                color: '#007FFF',
+                size: 14
+            }
+        },
+        tapClose: true
+    }, function(ret, err) {
+        if (ret) {
+            alert(JSON.stringify(ret));
+        } else {
+            alert(JSON.stringify(err));
+        }
+    });
+}
+
+function dialogBox_taskPlan() {
+    dialogBox.taskPlan({
+        rect: {
+            w: 280
+        },
+        texts: {
+            mainTitle: '昨天玩的不够努力哦',
+            subTitle: '今天没有获得任务次数奖励呢',
+            content: [{
+                text: '今日赚猫钞任务总次数：3次'
+            }, {
+                text: '3次（基础）+ 0次（奖励）'
+            }],
+            btnTitle: '开始做任务'
+        },
+        styles: {
+            bg: '#fff',
+            corner: 6,
+            main: {
+                marginT: 20,
+                color: '#636363',
+                size: 18,
+                bold: true,
+            },
+            sub: {
+                marginT: 8,
+                color: '#999999',
+                size: 16,
+            },
+            content: [{
+                bg: '#FFD249',
+                marginT: 10,
+                marginL: 16,
+                w: 250,
+                h: 30,
+                align: 'center',
+                color: '#BC6504',
+                size: 17
+            }, {
+                bg: '#FFEABF',
+                marginT: 0,
+                marginL: 16,
+                w: 250,
+                h: 40,
+                align: 'center',
+                color: '#EDB56A',
+                size: 16
+            }],
+            ok: {
+                marginB: 10,
+                marginL: 16,
+                w: 250,
+                h: 44,
+                bg: '#ED1C43',
+                color: '#FFF',
+                size: 16
+            }
+        },
+        tapClose: true
+    }, function(ret) {
+        if (ret.eventType == 'ok') {
+            dialogBox.close({
+                dialogName: 'taskPlan'
+            });
+        }
+    });
+}
+
+function dialogBox_receipt() {
+    dialogBox.receipt({
+        rect: {
+            w: 300,
+            h: 380
+        },
+        items: [{
+            key: '起步价',
+            value: '0.00'
+        }, {
+            key: '4.23公里',
+            value: '6.37'
+        }, {
+            key: '15.58分钟',
+            value: '3.9'
+        }, {
+            key: '小计',
+            value: '￥10.27'
+        }, {
+            key: '优惠',
+            value: '(3.49)'
+        }, {
+            key: '已收费',
+            value: ''
+        }, {
+            key: '3484549@qq.com',
+            value: '￥6.78'
+        }],
+        texts: {
+            title: '人民优步 + 收据',
+            cancel: 'CLOSE'
+        },
+        styles: {
+            bg: '#FFF',
+            corner: 6,
+            title: {
+                textColor: '#000',
+                textSize: 18,
+                marginT: 10
+            },
+            topBorder: {
+                borderColor: '#000',
+                borderWidth: 2,
+                marginT: 20
+            },
+            listHeight: 270,
+            item: {
+                textColor: '#000',
+                textSize: 14,
+                marginL: 10,
+                marginT: 15,
+                marginB: 5,
+                bgColor: '#FFF'
+            },
+            bottomBorder: {
+                borderColor: '#000',
+                borderWidth: 2,
+            },
+            cancel: {
+                textSize: 18,
+                textColor: '#000',
+                marginT: 7,
+                highlight: '#fff'
+            }
+        },
+        tapClose: true
+    }, function(ret, err) {
+        if (ret.eventType == 'cancel') {
+            dialogBox.close({
+                dialogName: 'receipt'
+            });
+        }
+    });
+}
+
+function dialogBox_tips() {
+    dialogBox.tips({
+        rect: {
+            w: 300
+        },
+        texts: {
+            title: '3天免单上班的秘诀...',
+            content: '优步全新乘客邀请计划限时上线！每成功邀请一个新小伙伴首次使用优步，双方账户均享3次免费行程（每次最高减免10元，中国大陆适用）'
+        },
+        buttons: [{
+            normal: 'widget://image/weibo.png',
+            text: '微博'
+        }, {
+            normal: 'widget://image/mes.png',
+            text: '短信'
+        }, {
+            normal: 'widget://image/em.png',
+            text: '邮箱'
+        }],
+        styles: {
+            bg: '#FFF',
+            corner: 6,
+            topImage: {
+                path: 'widget://image/car.png',
+                w: 300,
+                h: 150
+            },
+            title: {
+                color: '#000',
+                size: 18,
+                marginT: 35
+            },
+            content: {
+                color: '#000',
+                size: 15,
+                marginT: 15
+            },
+            border: {
+                color: '#eee',
+                width: 2,
+                marginT: 10
+            },
+            buttons: [{
+                iconSize: 32,
+                textColor: '#000',
+                textSize: 12,
+                marginT: 15
+            }, {
+                iconSize: 32,
+                textColor: '#000',
+                textSize: 12,
+                marginT: 15
+            }, {
+                iconSize: 32,
+                textColor: '#000',
+                textSize: 12,
+                marginT: 15
+            }]
+        },
+        tapClose: true
+    }, function(ret) {
+        alert(JSON.stringify(ret));
+    });
+}
+
+function dialogBox_discount() {
+    dialogBox.discount({
+        rect: {
+            w: 280,
+            h: 335
+        },
+        styles: {
+            bg: '#fff',
+            corner: 6,
+            image: {
+                path: 'widget://image/dis.jpg',
+                marginB: 120
+            },
+            cancel: {
+                icon: 'widget://image/del.png',
+                marginB: 40,
+                w: 30,
+                h: 30
+            }
+        },
+        tapClose: true
+    }, function(ret) {
+        if (ret.eventType == 'cancel') {
+            dialogBox.close({
+                dialogName: 'discount'
+            });
+        }
+    });
+}
+
+function dialogBox_share() {
+    dialogBox.share({
+        rect: {
+            w: 300,
+            h: 300
+        },
+        items: [{
+            text: '微信朋友圈',
+            icon: 'widget://image/friend.png'
+        }, {
+            text: '微信好友',
+            icon: 'widget://image/weifriend.png'
+        }, {
+            text: '微博',
+            icon: 'widget://image/weibo64.png'
+        }, {
+            text: 'QQ好友',
+            icon: 'widget://image/QQ.png'
+        }, {
+            text: 'QQ空间',
+            icon: 'widget://image/Qzone.png'
+        }, {
+            text: '复制链接',
+            icon: 'widget://image/copy.png'
+        }],
+        styles: {
+            bg: '#FFF',
+            corner: 6,
+            column: 3,
+            horizontalSpace: 32,
+            verticalSpace: 32,
+            itemText: {
+                color: '#000',
+                size: 15,
+                marginT: 20
+            },
+            itemIcon: {
+                size: 54
+            }
+        },
+        tapClose: true
+    }, function(ret) {
+        alert(JSON.stringify(ret));
+    });
+}   
+
+function dialogBox_actionMenu() {
+    dialogBox.actionMenu({
+        rect: {
+            h: 200
+        },
+        texts: {
+            cancel: '取消'
+        },
+        items: [{
+            text: '微信朋友圈',
+            icon: 'widget://image/friend.png'
+        }, {
+            text: '微信好友',
+            icon: 'widget://image/weifriend.png'
+        }, {
+            text: '微博',
+            icon: 'widget://image/weibo64.png'
+        }, {
+            text: 'QQ好友',
+            icon: 'widget://image/QQ.png'
+        }, {
+            text: 'QQ空间',
+            icon: 'widget://image/Qzone.png'
+        }, {
+            text: '复制链接',
+            icon: 'widget://image/copy.png'
+        }],
+        styles: {
+            bg: '#FFF',
+            corner: 6,
+            column: 4,
+            itemText: {
+                color: '#000',
+                size: 14,
+                marginT: 10
+            },
+            itemIcon: {
+                size: 54
+            },
+            cancel: {
+                bg: '#fff',
+                color: '#333',
+                h: 55,
+                size: 14
+            }
+        },
+        tapClose: true
+    }, function(ret) {
+        alert(JSON.stringify(ret));
+    });
+}
+</script>
